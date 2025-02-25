@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            border: none;
+            background: #007BFF;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        input {
+            width: 80%;
+            padding: 10px;
+            text-align: center;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Password Generator</h2>
+        <input type="text" id="password" readonly>
+        <button onclick="generatePassword()">Generate Password</button>
+        <button onclick="copyPassword()">Copy to Clipboard</button>
+    </div>
+
+    <script>
+        function generatePassword() {
+            let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+";
+            let passwordLength = 12;
+            let password = "";
+            for (let i = 0; i < passwordLength; i++) {
+                let randomIndex = Math.floor(Math.random() * chars.length);
+                password += chars[randomIndex];
+            }
+            document.getElementById("password").value = password;
+        }
+
+        function copyPassword() {
+            let passwordField = document.getElementById("password");
+            passwordField.select();
+            document.execCommand("copy");
+            alert("Password copied to clipboard!");
+        }
+    </script>
+</body>
+</html>
